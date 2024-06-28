@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightForge", "FightForge\FightForge.csproj", "{C87595D1-079E-4427-A259-A08BD2AF2E46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C87595D1-079E-4427-A259-A08BD2AF2E46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C87595D1-079E-4427-A259-A08BD2AF2E46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C87595D1-079E-4427-A259-A08BD2AF2E46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C87595D1-079E-4427-A259-A08BD2AF2E46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {323EAE5F-670A-452D-9C0F-CC310282334F}
+	EndGlobalSection
+EndGlobal
