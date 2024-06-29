@@ -1,4 +1,6 @@
-﻿namespace FightForge.Data.Seeders
+﻿using FightForge.Entities;
+
+namespace FightForge.Data.Seeders
 {
     public class GymSeeder : IGymSeeder
     {
@@ -15,10 +17,15 @@
                 if (!_dbContext.Gyms.Any())
                 {
                     var gyms = GetGyms();
-                    _dbContext.Gyms.AddRange(gyms);
+                    await _dbContext.AddRangeAsync(gyms);
                     await _dbContext.SaveChangesAsync();
                 }
-
+                if (!_dbContext.Roles.Any())
+                {
+                    var roles = GetRoles();
+                    await _dbContext.AddRangeAsync(roles);
+                    await _dbContext.SaveChangesAsync();
+                }
             }
         }
 
@@ -112,6 +119,25 @@
                 },
             };
             return gyms;
+        }
+        private IEnumerable<Role> GetRoles()
+        {
+            var roles = new List<Role>()
+            {
+                new Role()
+                {
+                    Name = "owner"
+                },
+                new Role()
+                {
+                    Name = "trainer"
+                },
+                new Role()
+                {
+                    Name = "admin"
+                },
+            };
+            return roles;
         }
     }
 }

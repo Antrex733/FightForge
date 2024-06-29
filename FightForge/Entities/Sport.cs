@@ -3,8 +3,8 @@
     public class Sport
     {
         public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Difficulty { get; set; }
+        public string Name { get; set; } = default!;
+        public string Difficulty { get; set; } = default!;
 
         //public User Trainer { get; set; }
 
