@@ -1,3 +1,6 @@
+using FightForge.Authorization;
+using Microsoft.AspNetCore.Authorization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -43,6 +46,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
 builder.Services.AddScoped<IValidator<LoginUserDto>, LoginUserDtoValidator>();
 builder.Services.AddExceptionHandler<AppExceptionsHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
+builder.Services.AddScoped<IGymService, GymService>();
 
 var app = builder.Build();
 

@@ -3,7 +3,7 @@ using FightForge.Services.Interfaces;
 
 namespace FightForge.Controllers
 {
-    [Controller]
+    [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
@@ -17,10 +17,6 @@ namespace FightForge.Controllers
         [HttpPost("register")]
         public IActionResult RegisterUser([FromBody] RegisterUserDto dto) 
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             _userService.RegisterUser(dto);
 
             return Ok();
@@ -28,10 +24,6 @@ namespace FightForge.Controllers
         [HttpPost("login")]
         public IActionResult LoginUser([FromBody] LoginUserDto dto) 
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             var token = _userService.GenerateJwt(dto);
 
             return Ok(token);

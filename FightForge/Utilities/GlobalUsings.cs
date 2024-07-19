@@ -19,3 +19,4 @@ global using System.Text;
 global using Microsoft.AspNetCore.Diagnostics;
 global using FightForge;
 global using FightForge.Models.Validators;
+global using FightForge.Models;
