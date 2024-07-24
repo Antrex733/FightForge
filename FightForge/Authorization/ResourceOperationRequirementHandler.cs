@@ -14,7 +14,9 @@ namespace FightForge.Authorization
             }
 
             var userId = context.User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            if (gym.CreatedById == int.Parse(userId)) 
+            var role = context.User.FindFirst(r => r.Type == ClaimTypes.Role).Value;
+
+            if (gym.CreatedById == int.Parse(userId) || role == "admin") 
             {
                 context.Succeed(requirement);
             }

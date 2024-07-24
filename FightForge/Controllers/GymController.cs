@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-
+﻿
 namespace FightForge.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    [Authorize(Roles = "owner, admin")]
     public class GymController : ControllerBase
     {
         private readonly IGymService _gymService;
@@ -28,6 +27,27 @@ namespace FightForge.Controllers
             var gym = _gymService.GetById(gymId);
 
             return Ok(gym);
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreateGym([FromBody]CreateGymDto dto)
+        {
+            await _gymService.Create(dto);
+
+            return Created();
+        }
+        [HttpPatch("{gymId}")]
+        public async Task<IActionResult> PatchGym([FromRoute] int gymId, [FromBody] UpdateGymDto dto)
+        {
+            await _gymService.Patch(gymId, dto);
+
+            return NoContent();
+        }
+        [HttpDelete("{gymId}")]
+        public async Task<ActionResult> DeleteGym([FromRoute] int gymId)
+        {
+            await _gymService.Delete(gymId);
+
+            return NoContent();
         }
     }
 }

@@ -6,5 +6,6 @@ namespace FightForge.Services.Interfaces
     {
         Task RegisterUser(RegisterUserDto dto);
         string GenerateJwt(LoginUserDto dto);
+        Task RoleChange(int userId);
     }
 }

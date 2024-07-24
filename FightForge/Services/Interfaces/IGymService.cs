@@ -5,5 +5,7 @@
         public IEnumerable<GymDto> GetAll();
         public GymDto GetById(int id);
         public Task Create(CreateGymDto dto);
+        public Task Patch(int gymId, UpdateGymDto dto);
+        public Task Delete(int gymId);
     }
 }

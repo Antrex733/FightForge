@@ -20,3 +20,4 @@ global using Microsoft.AspNetCore.Diagnostics;
 global using FightForge;
 global using FightForge.Models.Validators;
 global using FightForge.Models;
+global using Microsoft.AspNetCore.Authorization;

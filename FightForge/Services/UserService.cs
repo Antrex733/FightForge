@@ -69,5 +69,25 @@
             await _context.AddAsync(user);
             await _context.SaveChangesAsync();
         }
+
+        public async Task RoleChange(int userId)
+        {
+            var user = _context
+                .Users
+                .FirstOrDefault(x => x.Id ==  userId);
+
+            if (user == null)
+            {
+                throw new NotFoundException("User not found");
+            }
+
+            if (user.RoleId == 3)
+            {
+                throw new ForbidException("This user is already an admin");
+            }
+
+            user.RoleId = 3;
+            await _context.SaveChangesAsync();
+        }
     }
 }

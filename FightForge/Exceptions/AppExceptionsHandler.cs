@@ -7,7 +7,8 @@
             (int statusCode, string errorMessage) = exception switch
             {
                 BadRequestException badRequestException => (400, badRequestException.Message),
-                NotFoundException notFoundException => (400, notFoundException.Message),
+                NotFoundException notFoundException => (404, notFoundException.Message),
+                ForbidException forbidException => (403, forbidException.Message),
 
                 _ => (500, "Something went wrong")
             };

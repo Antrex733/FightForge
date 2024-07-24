@@ -28,5 +28,13 @@ namespace FightForge.Controllers
 
             return Ok(token);
         }
+        [HttpPatch("{userId}/role")]
+        [Authorize(Roles = "admin")]
+        public async Task<ActionResult> RoleChange([FromRoute] int userId)
+        {
+            await _userService.RoleChange(userId);
+
+            return NoContent();
+        }
     }
 }

@@ -17,7 +17,8 @@ namespace FightForge.Models.Validators
                 .Equal(y => y.ConfirmPassword)
                 .Custom((value, context) =>
                 {
-                    var characters = value.ToLower() == value || value.ToUpper() == value || !value.Any(char.IsDigit);
+                    var characters = value.ToLower() == value || value.ToUpper() == value 
+                    || !value.Any(char.IsDigit) || value.Any(x => x.Equals(' '));
                     if (characters)
                     {
                         context.AddFailure("Password", "The password must contain at least one uppercase letter, one lowercase letter and a number");
@@ -31,6 +32,15 @@ namespace FightForge.Models.Validators
                     if (isTaken) 
                     {
                         context.AddFailure("Email", "That email is taken");
+                    }
+                });
+
+            RuleFor(x => x.RoleId)
+                .Custom((value, context) =>
+                {
+                    if (value == 3)
+                    {
+                        context.AddFailure("RoleId", "The admin role is assigned by the admin");
                     }
                 });
         }
