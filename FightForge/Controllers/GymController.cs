@@ -31,9 +31,9 @@ namespace FightForge.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateGym([FromBody]CreateGymDto dto)
         {
-            await _gymService.Create(dto);
+            int gymId = await _gymService.Create(dto);
 
-            return Created();
+            return Created($"api/gym/{gymId}", null);
         }
         [HttpPatch("{gymId}")]
         public async Task<IActionResult> PatchGym([FromRoute] int gymId, [FromBody] UpdateGymDto dto)

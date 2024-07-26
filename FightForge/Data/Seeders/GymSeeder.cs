@@ -14,21 +14,20 @@ namespace FightForge.Data.Seeders
         {
             if (await _dbContext.Database.CanConnectAsync())
             {
-                if (!_dbContext.Gyms.Any())
-                {
-                    var gyms = GetGyms();
-                    await _dbContext.AddRangeAsync(gyms);
-                    await _dbContext.SaveChangesAsync();
-                }
                 if (!_dbContext.Roles.Any())
                 {
                     var roles = GetRoles();
                     await _dbContext.AddRangeAsync(roles);
                     await _dbContext.SaveChangesAsync();
                 }
+                if (!_dbContext.Gyms.Any())
+                {
+                    var gyms = GetGyms();
+                    await _dbContext.AddRangeAsync(gyms);
+                    await _dbContext.SaveChangesAsync();
+                }
             }
-        }
-
+        } 
         private IEnumerable<Gym> GetGyms()
         {
             var gyms = new List<Gym>()
@@ -44,12 +43,28 @@ namespace FightForge.Data.Seeders
                     {
                         new Sport()
                         {
+                            Trainer = new User()
+                            {
+                                FirstName = "FirstName1",
+                                LastName = "LastName1",
+                                Email = "Email1",
+                                PasswordHash = "PasswordHash1",
+                                RoleId = 2
+                            },
                             Name = "MMA",
                             Difficulty = "intermediate",
                         },
 
                         new Sport()
                         {
+                            Trainer = new User()
+                            {
+                                FirstName = "FirstName2",
+                                LastName = "LastName2",
+                                Email = "Email2",
+                                PasswordHash = "PasswordHash2",
+                                RoleId = 2
+                            },
                             Name = "Grappling",
                             Difficulty = "beginner",
                         },

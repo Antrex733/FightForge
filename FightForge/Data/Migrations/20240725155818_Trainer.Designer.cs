@@ -4,6 +4,7 @@ using FightForge.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FightForge.Migrations
 {
     [DbContext(typeof(GymDbContext))]
-    partial class GymDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240725155818_Trainer")]
+    partial class Trainer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,7 +125,7 @@ namespace FightForge.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TrainerId")
+                    b.Property<int>("TrainerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -146,14 +149,6 @@ namespace FightForge.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -197,8 +192,10 @@ namespace FightForge.Migrations
                         .IsRequired();
 
                     b.HasOne("FightForge.Entities.User", "Trainer")
-                        .WithMany("Sports")
-                        .HasForeignKey("TrainerId");
+                        .WithMany()
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Gym");
 
@@ -223,11 +220,6 @@ namespace FightForge.Migrations
                 });
 
             modelBuilder.Entity("FightForge.Entities.Gym", b =>
-                {
-                    b.Navigation("Sports");
-                });
-
-            modelBuilder.Entity("FightForge.Entities.User", b =>
                 {
                     b.Navigation("Sports");
                 });

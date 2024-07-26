@@ -2,9 +2,8 @@
 
 namespace FightForge.Models
 {
-    public class SportDto
+    public class CreateSportDto
     {
-        public int Id { get; set; }
         [MaxLength(50)]
         [Required]
         public string Name { get; set; } = default!;
@@ -12,7 +11,6 @@ namespace FightForge.Models
         [Required]
         public string Difficulty { get; set; } = default!;
 
-        public string TrainersFirstName { get; set; } = default!;
-        public string TrainersLastName { get; set; } = default!;
+        public int TrainerId { get; set; }
     }
 }

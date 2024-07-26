@@ -8,7 +8,9 @@ namespace FightForge.Mappings
         {
             CreateMap<RegisterUserDto, User>();
 
-            CreateMap<Sport, SportDto>();
+            CreateMap<Sport, SportDto>()
+                .ForMember(c => c.TrainersFirstName, c => c.MapFrom(a => a.Trainer.FirstName))
+                .ForMember(c => c.TrainersLastName, c => c.MapFrom(a => a.Trainer.LastName));
 
             CreateMap<Gym, GymDto>()
                 .ForMember(c => c.City, c => c.MapFrom(a => a.Address.City))
@@ -25,6 +27,11 @@ namespace FightForge.Mappings
                 .ForMember(d => d.Description, m => m.MapFrom(d => d.Description))
                 .ForMember(c => c.ContactNumber, m => m.MapFrom(c => c.ContactNumber))
                 .ForMember(c => c.ContactEmail, m => m.MapFrom(c => c.ContactEmail));
+
+            CreateMap<CreateSportDto, Sport>();
+
+            CreateMap<UpdateSportDto, Sport>();
+                //.ForMember(x => x.);
         }
     }
 }

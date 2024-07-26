@@ -34,7 +34,7 @@ namespace FightForge.Models.Validators
                         context.AddFailure("Email", "That email is taken");
                     }
                 });
-
+            /*
             RuleFor(x => x.RoleId)
                 .Custom((value, context) =>
                 {
@@ -43,6 +43,7 @@ namespace FightForge.Models.Validators
                         context.AddFailure("RoleId", "The admin role is assigned by the admin");
                     }
                 });
+            */
         }
     }
 }

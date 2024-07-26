@@ -22,7 +22,7 @@ namespace FightForge.Services
             _authorizationService = authorizationService;
         }
 
-        public async Task Create(CreateGymDto dto)
+        public async Task<int> Create(CreateGymDto dto)
         {
             var gym = _mapper.Map<Gym>(dto);
 
@@ -38,6 +38,8 @@ namespace FightForge.Services
 
             await _context.AddAsync(gym);
             await _context.SaveChangesAsync();
+
+            return gym.Id;
         }
 
         public async Task Delete(int gymId)
@@ -72,6 +74,7 @@ namespace FightForge.Services
                 .Gyms
                 .Include(a => a.Address)
                 .Include(b => b.Sports)
+                    .ThenInclude(u => u.Trainer)
                 .ToList();
 
             var gymsDto = _mapper.Map<List<GymDto>>(gyms);
@@ -85,20 +88,12 @@ namespace FightForge.Services
                 .Gyms
                 .Include(a => a.Address)
                 .Include(b => b.Sports)
+                    .ThenInclude(c => c.Trainer)
                 .FirstOrDefault(x => x.Id == id);
-
 
             if (gym == null)
             {
                 throw new NotFoundException("Gym not found");
-            }
-
-            var authorizationResult = _authorizationService.AuthorizeAsync(_contextService.User, gym,
-                new ResourceOperationRequirement(OperationType.Read)).Result;
-
-            if (!authorizationResult.Succeeded)
-            {
-                throw new ForbidException();
             }
 
             var gymDto = _mapper.Map<GymDto>(gym);
