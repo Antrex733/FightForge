@@ -20,9 +20,9 @@
         }
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult GetAll([FromRoute] int gymId)
+        public ActionResult GetAll([FromRoute] int gymId,[FromQuery] SportQuery query)
         {
-            var result = _sportService.GetAll(gymId);
+            var result = _sportService.GetAll(gymId, query);
 
             return Ok(result);
         }

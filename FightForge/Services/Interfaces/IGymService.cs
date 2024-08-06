@@ -2,7 +2,7 @@
 {
     public interface IGymService
     {
-        public IEnumerable<GymDto> GetAll();
+        public PagedResult<GymDto> GetAll(GymQuery query);
         public GymDto GetById(int id);
         public Task<int> Create(CreateGymDto dto);
         public Task Patch(int gymId, UpdateGymDto dto);

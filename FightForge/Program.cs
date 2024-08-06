@@ -47,6 +47,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
 builder.Services.AddScoped<IValidator<LoginUserDto>, LoginUserDtoValidator>();
 builder.Services.AddScoped<IValidator<CreateSportDto>, CreateSportDtoValidator>();
+builder.Services.AddScoped<IValidator<GymQuery>,  GymQueryValidator>();
+builder.Services.AddScoped<IValidator<SportQuery>, SportQueryValidator>();
 builder.Services.AddExceptionHandler<AppExceptionsHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
 builder.Services.AddScoped<IGymService, GymService>();

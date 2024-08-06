@@ -1,5 +1,4 @@
-﻿
-namespace FightForge.Controllers
+﻿namespace FightForge.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -14,9 +13,9 @@ namespace FightForge.Controllers
         }
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult<IEnumerable<GymDto>> GetAll()
+        public ActionResult<IEnumerable<GymDto>> GetAll([FromQuery]GymQuery query)
         {
-            var gyms = _gymService.GetAll();
+            var gyms = _gymService.GetAll(query);
 
             return Ok(gyms);
         }

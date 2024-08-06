@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace FightForge.Models
+﻿namespace FightForge.Models
 {
     public class CreateGymDto
     {

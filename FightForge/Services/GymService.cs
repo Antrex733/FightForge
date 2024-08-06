@@ -1,8 +1,4 @@
-﻿
-
-using FightForge.Authorization;
-using FightForge.Entities;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Linq.Expressions;
 
 namespace FightForge.Services
 {
@@ -68,18 +64,45 @@ namespace FightForge.Services
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<GymDto> GetAll()
+        public PagedResult<GymDto> GetAll(GymQuery query)
         {
-            var gyms = _context
+            var baseQuery = _context
                 .Gyms
                 .Include(a => a.Address)
                 .Include(b => b.Sports)
                     .ThenInclude(u => u.Trainer)
-                .ToList();
+                .Where(x => query.SearchPhrase == null ||
+                        x.Name.ToLower() == query.SearchPhrase.ToLower() ||
+                        x.Address.City.ToLower() == query.SearchPhrase.ToLower() ||
+                        x.Address.Street.ToLower() == query.SearchPhrase.ToLower() ||
+                        x.Sports.Any(n => n.Name.ToLower() == query.SearchPhrase.ToLower()));
+
+            if (!string.IsNullOrEmpty(query.SortBy) && query.SortDirection != null)
+            {
+                var propSelectors = new Dictionary<string, Expression<Func<Gym, object>>>
+                {
+                    { nameof(Gym.Name), x => x.Name },
+                    { nameof(Gym.Description), x => x.Description }
+                };
+
+                var selectedProp = propSelectors[query.SortBy];
+
+                baseQuery = query.SortDirection == SortDirection.ASC
+                    ? baseQuery.OrderBy(selectedProp) 
+                    : baseQuery.OrderByDescending(selectedProp);
+            }
+
+            var gyms = baseQuery
+                .Skip(query.PageSize * (query.PageNumber - 1))
+                .Take(query.PageSize);
+
+            var totalItemsCount = baseQuery.Count();
 
             var gymsDto = _mapper.Map<List<GymDto>>(gyms);
 
-            return gymsDto;
+            var pageResult = new PagedResult<GymDto>(gymsDto, totalItemsCount, query.PageSize, query.PageNumber);
+
+            return pageResult;
         }
 
         public GymDto GetById(int id)
