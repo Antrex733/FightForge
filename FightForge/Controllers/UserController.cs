@@ -1,7 +1,4 @@
-﻿using FightForge.DTOs;
-using FightForge.Services.Interfaces;
-
-namespace FightForge.Controllers
+﻿namespace FightForge.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

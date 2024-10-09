@@ -1,6 +1,4 @@
-﻿using FightForge.Entities;
-
-namespace FightForge.Data.Seeders
+﻿namespace FightForge.Data.Seeders
 {
     public class GymSeeder : IGymSeeder
     {
@@ -36,7 +34,9 @@ namespace FightForge.Data.Seeders
                 {
                     Name = "Warszawskie Centrum Atletyki",
                     Description =
-                        "Klub sztuk walki i siłownia w jednym. Tutaj każdy znajdzie coś dla siebie, zarówno osoba rozpoczynająca swoją przygodę z treningami jak i profesjonalny zawodnik, szukający kompleksowej bazy umożliwiającej mu przygotowanie do startów.",
+                        "Klub sztuk walki i siłownia w jednym. Tutaj każdy znajdzie coś dla siebie, " +
+                        "zarówno osoba rozpoczynająca swoją przygodę z treningami jak i profesjonalny " +
+                        "zawodnik, szukający kompleksowej bazy umożliwiającej mu przygotowanie do startów.",
                     ContactEmail = "contact@wca.com",
                     ContactNumber = "111222333",
                     Sports = new List<Sport>()
@@ -45,9 +45,9 @@ namespace FightForge.Data.Seeders
                         {
                             Trainer = new User()
                             {
-                                FirstName = "FirstName1",
-                                LastName = "LastName1",
-                                Email = "Email1",
+                                FirstName = "Joe",
+                                LastName = "Doe",
+                                Email = "JoeDoe@email.com",
                                 PasswordHash = "PasswordHash1",
                                 RoleId = 2
                             },

@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace FightForge.Services
+﻿namespace FightForge.Services
 {
     public class SportService : ISportService
     {

@@ -1,6 +1,4 @@
-﻿using FightForge.DTOs;
-
-namespace FightForge.Models.Validators
+﻿namespace FightForge.Models.Validators
 {
     public class RegisterUserDtoValidator : AbstractValidator<RegisterUserDto>
     {

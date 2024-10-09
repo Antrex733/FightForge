@@ -1,6 +1,4 @@
-﻿using FightForge.DTOs;
-
-namespace FightForge.Services.Interfaces
+﻿namespace FightForge.Services.Interfaces
 {
     public interface IUserService
     {

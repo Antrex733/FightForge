@@ -1,6 +1,4 @@
-﻿using FightForge.DTOs;
-
-namespace FightForge.Mappings
+﻿namespace FightForge.Mappings
 {
     public class MappingProfile : Profile
     {

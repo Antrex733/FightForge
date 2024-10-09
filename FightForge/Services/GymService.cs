@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace FightForge.Services
+﻿namespace FightForge.Services
 {
     public class GymService : IGymService
     {
@@ -129,6 +127,7 @@ namespace FightForge.Services
             var gym = _context
                 .Gyms
                 .FirstOrDefault(x => x.Id == gymId);
+
             if (gym == null)
             {
                 throw new NotFoundException("Gym not found");

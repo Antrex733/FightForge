@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-
-namespace FightForge.Authorization
+﻿namespace FightForge.Authorization
 {
     public enum OperationType
     {
